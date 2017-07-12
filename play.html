@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Nightmare</title>
+      <meta name="description" content="Sam's Game">
+      <meta name="author" content="Samuel Hinds">
+      <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+   </head>
+   <body style="background-color:black;">
+      <script
+         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+         crossorigin="anonymous"></script>
+      <a id="elevator" href="#" style="width: 100%">
+          <img id="door" src="closed.jpg" style="width: 100%; max-height: 700px;  max-width: 700px;"/>
+      </a>
+      <audio loop id="music" src="sounds/scary.wav" preload="auto"></audio>
+      <audio id="openSound" src="sounds/open.wav" preload="auto"></audio>
+      <audio id="closeSound" src="sounds/close.wav" preload="auto"></audio>
+      <audio id="jumpSound" src="sounds/jump.wav" preload="auto"></audio>
+      <audio id="wait" src="sounds/wait.wav" preload="auto"></audio>
+      <audio id="stuck" src="sounds/stuck.wav" preload="auto"></audio>
+      <audio id="findme" src="sounds/findme.wav" preload="auto"></audio>
+      <audio id="run" src="sounds/run.wav" preload="auto"></audio>
+      <script type="text/javascript">
+         document.getElementById('music').play();
+         $(document).ready(function(){
+             var canClick = true;
+             var randomSam = 0;
+             $("#elevator").click(function() {
+                 if (!canClick) return false;
+                 document.getElementById('openSound').play();
+                 $("#door").attr('src', 'open.jpg');
+                 randomSam = randomSam + 1;
+                 if (randomSam == 1) {
+                     document.getElementById('wait').play();
+                 }
+                 if (randomSam == 2) {
+                     document.getElementById('stuck').play();
+                 }
+                 if (randomSam == 3) {
+                     document.getElementById('findme').play();
+                 }
+                 if (randomSam == 4) {
+                     $("#door").attr('src', 'jump.jpg');
+                     document.getElementById('music').pause();
+                     document.getElementById('jumpSound').play();
+                     canClick = false;
+                     setTimeout(function() {
+                       $("#elevator").click(function() {
+                         window.location.href='hallway.html'
+                       });
+                       document.getElementById('run').play();
+                     }, 2000);
+                 } else {
+                     canClick = false;
+                     setTimeout(function() {
+                       canClick = true;
+                       $("#door").attr('src', 'closed.jpg');
+                       document.getElementById('closeSound').play();
+                     }, 2000);
+                 }        
+             });
+         });
+      </script>
+   </body>
+</html>

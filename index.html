@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Nightmare</title>
+      <meta name="description" content="Sam's Game">
+      <meta name="author" content="Samuel Hinds">
+      <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <style>
+        html { 
+          background: url(menu.jpg) no-repeat center center fixed; 
+          -webkit-background-size: contain;
+          -moz-background-size: contain;
+          -o-background-size: contain;
+          background-size: contain;
+          background-color:black
+        }
+      </style>
+   </head>
+   <body style="background-color:black;">
+      <script
+         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+         crossorigin="anonymous"></script>
+      <audio loop id="intro" src="sounds/intro.wav" preload="auto"></audio>
+      <script type="text/javascript">
+         document.getElementById('intro').play();
+         $('document').ready(function() {
+             $('html').click(function() {
+                window.location.href="intro.html";
+             });
+         });  
+      </script>
+   </body>
+</html>

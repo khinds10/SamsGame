@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Nightmare</title>
+      <meta name="description" content="Sam's Game">
+      <meta name="author" content="Samuel Hinds">
+      <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        html { 
+          background: url(gameover.jpg) no-repeat center center fixed; 
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+        #win-message {
+            color: white;
+            font-size:100px;
+        }
+      </style>
+   </head>
+   <body>
+   
+     <h1 id="win-message"> GAME OVER </h1>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="js/scripts.js"></script>
+      <audio id="gameover" src="sounds/gameover.wav" preload="auto"></audio>
+      <script type="text/javascript">
+         document.getElementById('gameover').play();
+      </script>
+   </body>
+</html>

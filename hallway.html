@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Nightmare</title>
+      <meta name="description" content="Sam's Game">
+      <meta name="author" content="Samuel Hinds">
+      <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        html { 
+          background: url(hallway.jpg) no-repeat center center fixed; 
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+        #thisWay {
+            position:absolute; 
+            top: 25%; 
+            left: 25%; 
+            color: white; 
+            background-color: red; 
+            padding: 5px; 
+            cursor:pointer;
+        }
+      </style>
+   </head>
+   <body style="background-color:black;">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="js/scripts.js"></script>
+      <div style="color:white;"><h1>TIME IS RUNNING OUT! (click red button to run)</h1></div>
+      <div id="progressbar" style="background-color:red;"></div>
+      <div id="shakehallway">
+         <div id="thisWay"><h1>CLICK! This way!</h1></div>
+      </div>
+      <audio id="hallway" src="sounds/hallway.wav" preload="auto"></audio>
+      <audio id="running" src="sounds/running.wav" preload="auto"></audio>
+      <audio id="running2" src="sounds/running2.wav" preload="auto"></audio>
+      <audio id="running3" src="sounds/running3.wav" preload="auto"></audio>
+      <script type="text/javascript">
+         var chasingValue = 0;
+         document.getElementById('hallway').play();
+         
+         // you win after 8 seconds
+         setTimeout(function(){ window.location.href = 'win.html' }, 8000);
+         
+         $( "#thisWay" ).click(function() {
+
+             var randomThisWayTop = Math.floor((Math.random() * 3) + 1);
+             var randomThisWayLeft = Math.floor((Math.random() * 3) + 1);
+             document.getElementById("thisWay").style.top = 20*randomThisWayTop + "%";
+             document.getElementById("thisWay").style.left = 20*randomThisWayLeft + "%";
+
+             $( "body" ).effect( "shake" );
+             var randomSam = Math.floor((Math.random() * 3) + 1);
+             if (randomSam == 1) {
+                 document.getElementById('running').play();
+             }
+             if (randomSam == 2) {
+                 document.getElementById('running2').play();
+             }
+             if (randomSam == 3) {
+                document.getElementById('running3').play();
+             }
+             
+             chasingValue = chasingValue - 20;
+             if (chasingValue < 0) chasingValue = 0;
+         });
+         
+         // slowly increase the chasing value
+         function increaseValue() {
+            chasingValue = chasingValue + 1;
+            $( "#progressbar" ).progressbar({
+               value: chasingValue
+            });
+            
+            if (chasingValue > 100) {
+                window.location.href = 'lose.html';
+            }
+            setTimeout(function(){ increaseValue() }, 35);   
+         }
+         increaseValue();
+      </script>
+   </body>
+</html>
